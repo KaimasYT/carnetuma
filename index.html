@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carnet Universitario</title>
+</head>
+<style>
+    body {
+  margin: 0;
+  font-family: sans-serif;
+  background-image: url('fondoo.png');
+  background-size: contain;       /* Muestra la imagen completa */
+  background-repeat: no-repeat;   /* No se repite */
+  background-position: center top;/* Centrada arriba */
+  background-attachment: fixed;   /* Opcional: fondo fijo al hacer scroll */
+  background-color: white;        /* Fondo blanco por si no cubre toda la pantalla */
+  color: #002855;
+}
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+main {
+  padding: 20px;
+}
+
+.top-section {
+  text-align: center;
+}
+
+.logo {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.qr-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.qr {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+}
+
+.europe {
+  width: 60px;
+  margin-top: 10px;
+}
+
+.info-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.info-section h3 {
+  margin: 10px 0;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #002855;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+footer img {
+  max-width: 100%;
+  height: auto;
+  filter: grayscale(100%) contrast(1.5);
+}
+
+#reloj {
+  position: absolute;
+  top: 480px;
+  right: 150px;
+  font-size: 36px;
+  color: rgb(77, 90, 109);
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  line-height: 1.2;
+  z-index: 1000;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  width: max-content; /* << importante */
+}
+
+#reloj > div {
+  text-align: left;
+}
+
+</style>
+<body>
+
+  <!-- Contenido de la página -->
+
+  <!-- Div del reloj -->
+  <div id="reloj">
+  <div id="hora"></div>
+  <div id="fecha"></div>
+</div>
+
+
+  <!-- Importar script -->
+  <script>
+    function actualizarReloj() {
+  const ahora = new Date();
+
+  // Hora
+  const horas = String(ahora.getHours()).padStart(2, '0');
+  const minutos = String(ahora.getMinutes()).padStart(2, '0');
+  const segundos = String(ahora.getSeconds()).padStart(2, '0');
+  const horaTexto = `${horas}:${minutos}:<b>${segundos}</b>`;
+
+  // Fecha (formato: 16/06/2025)
+  const dia = String(ahora.getDate()).padStart(2, '0');
+  const mes = String(ahora.getMonth() + 1).padStart(2, '0');
+  const año = ahora.getFullYear();
+  const fechaTexto = `${dia}/${mes}/${año}`;
+
+  document.getElementById('hora').innerHTML = horaTexto;
+  document.getElementById('fecha').textContent = fechaTexto;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  actualizarReloj();
+  setInterval(actualizarReloj, 1000);
+});
+</script>
+</body>
+</html>
